@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Welcome Adoptee!</title>
+<meta charset="UTF-8">
+<title>Animal Listing></title>
 </head>
 <body>
-	<h1>Welcome, delightful adoptee! How can we help you find your future pet?</h1>
-	<br />
-	<h2>Animals up for adoption are listed below:</h2>
-	<form>
+<h1>Animals Listed</h1>
+<form>
 	<table>
 	<tr th:each="eA : ${animals}">
+		<td th:text="${eA.id}"/>
+		<td th:text="${eA.ArlId}"/>
 		<td th:text="${eA.animalName}"/>
 		<td th:text="${eA.animalType}"/>
 		<td th:text="${eA.breed}"/>
@@ -23,13 +23,10 @@
 		<td th:text="${eA.contact.address}"/>
 		<td th:text="${eA.contact.city}"/>
 		<td th:text="${eA.contact.state}"/>
+		<td><a th:href="@{/edit/{id}(id=${eA.id})}">Edit Animal info</a></td>
+		<td><a th:href="@{/delete/{id}(id=${eA.id})}">Delete Entery</a></td>
 	</table>
 </form>
-	<h2>Would you like to create an application to adopt?<a href="create-adoptee-application">Click Here!</a></h2>
-	<br />
+<a href="arl-homepage">Return to ARL Homepage</a>
 </body>
-<footer>
-	<a href="index">Return to user portal</a><br />
-	<a href="about">How to get ahold of us</a>
-</footer>
 </html>

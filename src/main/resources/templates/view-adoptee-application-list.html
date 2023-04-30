@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Adoptee Applications</title>
+</head>
+<body>
+	<h1>Adoptee Applications</h1>
+	<h2>Future Pet Owners Looking for Critters to Call Their Own. They Provided the Contact Info Shown Below</h2>
+	<form>
+		<table>
+		<tr th:each="aa : ${adoptees}">
+			<td th:text="${aa.contact.name}"/>
+			<td th:text="${aa.contact.phone}"/>
+			<td th:text="${aa.contact.email}"/>
+			<td th:text="${aa.contact.address}"/>
+			<td th:text="${aa.contact.city}"/>
+			<td th:text="${aa.contact.state}"/>
+			<td th:text="${aa.householdSize}"/>
+			<td th:text="${aa.numberOfPetsInFamily}"/>
+			<td th:text="${aa.hasChildren}"/>
+			<td th:text="${aa.livingSpace}"/>
+			<td th:text="${aa.description}"/>
+		</table>
+	</form>
+	<a href="arl-homepage">Return to the ARL Home Page</a>
+</body>
+</html>

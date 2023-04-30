@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>New Application for Adoption</title>
+</head>
+<body>
+	<h2>Adoptee Application Form</h2>
+	<form th:object="${adoptees}" th:action="@{/update/{id}(id=${adoptees.id})}" method="POST">
+	Full Name: <input name="contact.name" size="30" th:field="*{contact.name}"><br />
+	Phone Number: <input name="contact.phone" size="30" th:field="*{contact.phone}"><br />
+	Email: <input name="contact.email" size="30" th:field="*{contact.email}"><br />
+	Address: <input name="contact.address" size="30" th:field="*{contact.address}"><br />
+	City: <input name="contact.city" size="30" th:field="*{contact.city}"><br />
+	State: <input name="contact.state" size="30" th:field="*{contact.state}"><br />
+	Number of people in household (Including Yourself) <br />
+	<input name="adoptees.householdSize" size="20" th:field="*{householdSize}"><br />
+	Number of pets you have now. This is important as a household with too many other animals is likely to be an unhealthy enviornment for a new animal.<br />
+			<input name="numberOfPetsInFamily" size="20" th:field="*{numberOfPetsInFamily}"><br />
+	Do you have children currently? (Please enter only 'Yes' or 'No').<br />
+			<input name="hasChildren" size="20" th:field="*{hasChildren}"><br />
+	Describe where you live (house with outside yard, apartment, or whatever).><br />
+			<input name="livingSpace" size="30" th:field="*{livingSpace}"><br />
+	Description. Tell us the pet you want to adopt and why in a few sentences.<br />
+			<input name="description" size="80" th:field="*{description}"><br />
+	<input name="submit" type="submit" value="submit" />
+	</form>
+</body>
+</html>

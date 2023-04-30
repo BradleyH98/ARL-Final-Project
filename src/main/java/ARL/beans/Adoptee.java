@@ -2,6 +2,7 @@ package ARL.beans;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -16,9 +17,11 @@ import lombok.NoArgsConstructor;
 
 /*The way this class is built to use the contact info first then get the addional description of info from and adoptee*/
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Adoptee {
 	@Id
 	@GeneratedValue
@@ -27,8 +30,8 @@ public class Adoptee {
 	private ContactInfo contact;
 	private int householdSize; // number of people in a household
 	private int numberOfPetsInFamily; // number of pets in family, unsure if this is a good way to gauge this.
-	private Boolean hasChildren; // unsure of this being the best way to gauge this
-	private Boolean livingSpace; // checking to see is adoptee lives in a house(or other space) or apartment.
+	private String hasChildren; // unsure of this being the best way to gauge this
+	private String livingSpace; // checking to see is adoptee lives in a house(or other space) or apartment.
 	private String description; // information the adoptee can add giving an arl a better idea of the canididate looking to adopt;
 	
 }

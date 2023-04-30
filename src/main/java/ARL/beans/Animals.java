@@ -2,6 +2,7 @@ package ARL.beans;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Animals {
 	
 	@Id

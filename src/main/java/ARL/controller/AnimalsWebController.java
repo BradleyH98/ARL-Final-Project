@@ -21,55 +21,55 @@ import ARL.repository.AnimalsRepository;
 public class AnimalsWebController {
 	
 	@Autowired
-	AnimalsRepository repo;
+	AnimalsRepository animalRepo;
 	
-	// These controllers add, edit, and delete animals. This is set up
-	// to do these things on the same page, not automatically redirecting 
-	// to a view of all animals (in a list). So that way the arl user does not have to return
-	// to the enter page over and over again. - Brad 4/16/23
-	
-	@GetMapping({"/", "View-animal-list"})
+	@GetMapping("view-animal-list-arl")
 	public String ViewAnimalList(Model model) {
 		
-		if (repo.findAll().isEmpty()) {
-			return EnterAnAnimal(model);
+		if (animalRepo.findAll().isEmpty()) {
+			return NoAnimalsARL();
 		}
 		
-		model.addAttribute("Animals", repo.findAll());
-		return "view-animal-list";
+		model.addAttribute("animals", animalRepo.findAll());
+		return "view-animal-list-arl";
 	}
 	
 	@GetMapping("/enter-an-animal")
 	public String EnterAnAnimal(Model model) {
 		Animals newAn = new Animals();
-		model.addAttribute("animal", newAn);
+		model.addAttribute("animals", newAn);
 		return "enter-an-animal";
 	}
 	
 	@PostMapping("/enter-an-animal")
 	public String EnterAnAnimal(@ModelAttribute Animals a, Model model) {
-		repo.save(a);
-		return EnterAnAnimal(model);
+		animalRepo.save(a);
+		return ViewAnimalList(model);
 	}
 	
 	@GetMapping("/edit/{id}")
-	public String EditAnimals(@PathVariable("id") long id, Model model) {
-		Animals a = repo.findById(id).orElse(null);
-		model.addAttribute("animal", a);
+	public String EditAnimals(@PathVariable("id")long id, Model model) {
+		Animals a = animalRepo.findById(id).orElse(null);
+		model.addAttribute("animals", a);
 		return "enter-an-animal";
 	}
 	
 	@PostMapping("/update/{id}")
 	public String ReviseAnimals(Animals a, Model model) {
-		repo.save(a);
-		return EnterAnAnimal(model);
+		animalRepo.save(a);
+		return ViewAnimalList(model);
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String deleteAnimals(@PathVariable("id") long id, Model model) {
-		Animals a = repo.findById(id).orElse(null);
-		repo.delete(a);
-		return EnterAnAnimal(model);
+		Animals a = animalRepo.findById(id).orElse(null);
+		animalRepo.delete(a);
+		return ViewAnimalList(model);
+	}
+	
+	@GetMapping("/no-animals-arl")
+	public String NoAnimalsARL() {
+		return "no-animals-arl";
 	}
 	
 	@GetMapping("/view-adoptee-application-list")

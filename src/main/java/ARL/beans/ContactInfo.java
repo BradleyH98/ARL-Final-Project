@@ -1,5 +1,6 @@
 package ARL.beans;
 
+import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Embeddable
 public class ContactInfo {
 	
 	private String Name;
@@ -21,5 +23,4 @@ public class ContactInfo {
 	private String address;
 	private String city;
 	private String state;
-	
 }

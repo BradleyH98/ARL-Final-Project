@@ -2,9 +2,15 @@ package ARL.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import ARL.repository.ARLInfoRepository;
+import ARL.beans.Adoptee;
+import ARL.repository.AdopteeRepository;
+import ARL.repository.AnimalsRepository;
 
 /**
  * @author Bradh 
@@ -16,40 +22,21 @@ import ARL.repository.ARLInfoRepository;
 public class HomeController {
 	
 	@Autowired
-	ARLInfoRepository repo;
+	AnimalsRepository animalRepo;
 	
-	/* The commented out code below is in-development code for a sign in view/controller for an arl
-	/* I (Brad) am placing this in the back of priotities as of now (4/14/23) in the interst of time 
-	/* to continue development and construction of the rest of the website. ***********************/
-	
-	/*@GetMapping("/arlSignIn")
-	public String ARLSignIn(Model model) {
-		ARLInfo signIn = new ARLInfo();
-		if (signIn.) {
-			return "sign-in";
-		}
-	}
-	
-	// CODE TO BE DEVELOPED
-	
-	/* @PostMapping("/arlSignIn")
-	public String ARLSignIn(@ModelAttribute ARLInfo signIn, Model model) {
-		// code i'm unsure of as of this time - Bradley 4/10/2023
-		return ARLAdminPage(model);
-	} */
-	
-	@GetMapping("/index")
+	@GetMapping({"/", "/index"})
 	public String Index() {
 		return "index";
 	}
 	
-	@GetMapping("/arlHomePage")
+	@GetMapping("/arl-homepage")
 	public String ARLHomePage() {
 		return "arl-homepage";
 	} 
 	
 	@GetMapping("/adoptee-homepage") 
-	public String AdopteeHomepage() {
+	public String AdopteeHomepage(Model model) {
+		model.addAttribute("animals", animalRepo.findAll());
 		return "adoptee-homepage";
 	}
 	
@@ -57,4 +44,6 @@ public class HomeController {
 	public String About() {
 		return "about";
 	}
+	
+	
 }
